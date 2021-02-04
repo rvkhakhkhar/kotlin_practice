@@ -9,18 +9,20 @@ fun printMessageWithPrefix(messages: Collection<String>, prefix: String) {
     }
 }
 
-fun printProblemCounts(responses : Collection<String>) {
+fun printProblemCounts(responses: Collection<String>) {
     var clientErrors = 0
     var serverErrors = 0
     responses.forEach {
         if (it.startsWith("4")) {
-            clientErrors ++
-        } else if (it.startsWith("5")){
-            serverErrors ++
+            clientErrors++
+        } else if (it.startsWith("5")) {
+            serverErrors++
         }
     }
     println("$clientErrors client errors, $serverErrors server errors")
 }
+
+fun getAge(p: Person) = p.age
 
 fun main() {
     val sum = { x: Int, y: Int ->
@@ -28,11 +30,11 @@ fun main() {
         x + y
     }
     run { println("hello") }
-    var getAge = { p: Person -> p.age }
+
     val persons = listOf(Person("Alice", 29), Person("Bob", 31))
     println(persons.maxBy(Person::age))
     println(persons.maxBy { p: Person -> p.age })
-    println(persons.maxBy(getAge))
+    println(persons.maxBy(::getAge))
     val joinToString = persons.joinToString(" ") { it.name }
     println(joinToString)
     println(sum(5, 7))
