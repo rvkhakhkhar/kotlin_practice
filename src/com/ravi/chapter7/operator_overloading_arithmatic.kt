@@ -1,15 +1,20 @@
 package com.ravi.chapter7
 
-import com.ravi.to
 import java.math.BigDecimal
 
-data class Point(var x: Int, var y: Int) {
+class Point(var x: Int, var y: Int) {
     operator fun plus(other: Point): Point {
         return Point(this.x + other.x, this.y + other.y)
     }
 
     operator fun unaryMinus(): Point {
         return Point(-x, -y)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if(other === this) return true
+        if(other !is Point) return false
+        return other.x == x && other.y == y
     }
 }
 
